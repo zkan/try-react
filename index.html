@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Try React</title>
+        <script src="react-15.3.0/build/react.js"></script>
+        <script src="react-15.3.0/build/react-dom.js"></script>
+        <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+    </head>
+
+    <body>
+        <div id="app"></div>
+        <script type="text/babel">
+            var Layout = React.createClass({
+                getInitialState: function(){
+                    return {
+                        rangeValue: 5
+                    };
+                },
+                handleChange: function(value){
+                    this.setState({ rangeValue: value });
+                },
+                render: function() {
+                    return(
+                        <Slider rangeValue={this.state.rangeValue} handleChange={this.handleChange} />
+                    )
+                }
+            });
+
+            var Slider = React.createClass({
+                handleChange(e) {
+                    this.props.handleChange(e.target.value);
+                },
+                selectPokemon() {
+                    var result = "images/pokemon-03.png";
+                    switch(this.props.rangeValue) {
+                        case "0": result = "images/pokemon-01.png"; break;
+                        case "1": result = "images/pokemon-01.png"; break;
+                        case "2": result = "images/pokemon-01.png"; break;
+                        case "3": result = "images/pokemon-02.png"; break;
+                        case "4": result = "images/pokemon-02.png"; break;
+                        case "5": result = "images/pokemon-03.png"; break;
+                        case "6": result = "images/pokemon-03.png"; break;
+                        case "7": result = "images/pokemon-04.png"; break;
+                        case "8": result = "images/pokemon-04.png"; break;
+                        case "9": result = "images/pokemon-05.png"; break;
+                        case "10": result = "images/pokemon-05.png"; break;
+                    }
+                    return result;
+                },
+                render: function() {
+                    return(
+                        <div>
+                            <input type="range" min="0" max="10" value={this.props.rangeValue} step="1" onChange={this.handleChange} />
+                            <div><img src={this.selectPokemon()} width="100" /></div>
+                        </div>
+                    )
+                }
+            });
+
+            ReactDOM.render(<Layout />, app);
+        </script>
+    </body>
+</html>
