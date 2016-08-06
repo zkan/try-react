@@ -34,9 +34,18 @@
                 render: function() {
                     return(
                         <div>
+                            <Score rangeValue={this.props.rangeValue} />
                             <input type="range" min="0" max="10" value={this.props.rangeValue} step="1" onChange={this.handleChange} />
                             <Pokemon rangeValue={this.props.rangeValue} />
                         </div>
+                    )
+                }
+            });
+
+            var Score = React.createClass({
+                render: function() {
+                    return(
+                        <div>{this.props.rangeValue}</div>
                     )
                 }
             });
