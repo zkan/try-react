@@ -31,6 +31,17 @@
                 handleChange(e) {
                     this.props.handleChange(e.target.value);
                 },
+                render: function() {
+                    return(
+                        <div>
+                            <input type="range" min="0" max="10" value={this.props.rangeValue} step="1" onChange={this.handleChange} />
+                            <Pokemon rangeValue={this.props.rangeValue} />
+                        </div>
+                    )
+                }
+            });
+
+            var Pokemon = React.createClass({
                 selectPokemon() {
                     var result = "images/pokemon-03.png";
                     switch(this.props.rangeValue) {
@@ -50,10 +61,7 @@
                 },
                 render: function() {
                     return(
-                        <div>
-                            <input type="range" min="0" max="10" value={this.props.rangeValue} step="1" onChange={this.handleChange} />
-                            <div><img src={this.selectPokemon()} width="100" /></div>
-                        </div>
+                        <div><img src={this.selectPokemon()} width="100" /></div>
                     )
                 }
             });
